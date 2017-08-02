@@ -17,3 +17,8 @@ For tests simply run the following, but only after installing the requirements.
 ### Todos
 - Implement a custom datatype/object that can count words.
 - Add assignment description
+- Setup.py
+- tox
+- usage instructions
+
+
