@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
-from typing import List, Any
+from typing import List
+
+from .structures import WordFrequencyStructure
 
 
 __all__ = ['TextAnalyzerAbstract']
@@ -39,7 +41,7 @@ class TextAnalyzerAbstract(ABC):
 
     @abstractmethod
     def calculate_most_frequent_n_words(self, input_string: str, n: int) \
-            -> List[Any]:
+            -> List[WordFrequencyStructure]:
         """
         Returns a list of the n most frequently occurring words.
         :param input_string:

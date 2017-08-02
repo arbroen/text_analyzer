@@ -45,6 +45,17 @@ class AnalyzerTestMixin(object):
 
         assert result == 0
 
+        # no ending separator, f.e. ending dot.
+        result = \
+            self._analyzer.calculate_highest_frequency(input_string="asdluhad")
+
+        assert result == 1
+
+        result = \
+            self._analyzer.calculate_highest_frequency(input_string="abc abc")
+
+        assert result == 2
+
     def test_calculate_frequency_for_word(self):
         """
         Enim does not occur with a capital, however, we still expect the result
@@ -55,6 +66,11 @@ class AnalyzerTestMixin(object):
             input_string=self._text, word="enim")
 
         assert result == 3
+
+        result = self._analyzer.calculate_frequency_for_word(
+            input_string=self._text, word="Aenean")
+
+        assert result == 5
 
         result = self._analyzer.calculate_frequency_for_word(
             input_string=self._text, word="Enim")
@@ -87,6 +103,13 @@ class AnalyzerTestMixin(object):
             input_string=self._text, n=5)
 
         assert len(result) == 5
+
+        # Secondary order counts = [5, 3, 3, 3, 3]
+        order = ['aenean', 'eget', 'enim', 'eu', 'justo']
+
+        # wfs :: WordFrequencyStructure
+        for wfs, expected_value in zip(result, order):
+            assert wfs.word == expected_value
 
         # Edge cases
         result = self._analyzer.calculate_most_frequent_n_words(
